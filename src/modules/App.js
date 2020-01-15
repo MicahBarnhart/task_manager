@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from "./subModules/Page";
+import Page from "./subModules/pageModules/Page";
 import "../css/index.css";
 class App extends React.Component{
     render(){
