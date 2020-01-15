@@ -20,7 +20,7 @@ class TaskAdder extends React.Component{
     }
 
     handleAddTaskClick(){
-        this.props.tasks.
+        
     }
 }
 
