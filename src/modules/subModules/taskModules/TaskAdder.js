@@ -2,25 +2,33 @@ import React from 'react';
 class TaskAdder extends React.Component{
     constructor(props){
         super(props);
-        this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
+        this.state ={
+            taskText: null
+        }
+        this.taskTextBoxHandler = this.taskTextBoxHandler.bind(this);
     }
     render(){
         return(
             <div className="taskAdder">
                 <label className="taskAdderSpacing">Task:</label>
-                <input className="taskAdderSpacing"/>
+                <input 
+                    className="taskAdderSpacing"
+                    name="taskTextBox"
+                    onBlur={() => this.taskTextBoxHandler}   
+                 />
                 <button 
                     className="taskAdderSpacing"
-                    onClick={this.handleAddTaskClick}
+                    type="button"
+                    onClick={this.props.handler(this.state.taskText)}
                 >
                 Add Task
                 </button>
             </div>
         )
     }
-
-    handleAddTaskClick(){
-        
+    taskTextBoxHandler({target}){
+        const val = target.value;
+        this.setState({taskText: val});
     }
 }
 
