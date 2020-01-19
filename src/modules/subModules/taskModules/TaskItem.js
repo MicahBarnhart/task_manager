@@ -36,26 +36,27 @@ class TaskItem extends React.Component{
         if (this.state.startTime == null)
             this.setState({startTime: new Date()})
         else
-            this.setState({startTime: (new Date() - this.state.startTime)});
+            this.setState({startTime: ((new Date().getMilliseconds()/1000) + this.state.timeElapsed)});
+        console.log("Total time when started: " + this.state.startTime);
         //console.log("start time:" + this.state.startTime);
         this.setState({interval: setInterval(this.LogTimeDifference, 1000)});
     }
     StopTimerClick(){
         let now = new Date();
-        this.setState({timeElapsed: (now - this.state.startTime)});
+        let total = (now - this.state.startTime) / 1000;
+        console.log("Total time when stopped: " + total);
+        this.setState({timeElapsed: total});
         clearInterval(this.state.interval);
     }
     LogTimeDifference(){
         let now = new Date() - this.state.startTime;
         now = Math.floor(now /1000);
         //console.log("Time Passed:" + now);
-        let hours = null;
-        let minutes = null;
-        let seconds = null;
-        hours = Math.floor(now/3600);
-        now = now - hours * 3600;
-        minutes = Math.floor(now/60);
-        seconds = now - minutes * 60;
+        let hours = Math.floor(now / 3600);
+        let remainder = Math.floor(now % 3600);
+        let minutes = Math.floor(remainder / 60);
+        let seconds = Math.floor(remainder % 60);        
+
         let timeSpent = "Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
         this.setState({totalTime: timeSpent});
     }
