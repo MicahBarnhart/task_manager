@@ -8,19 +8,24 @@ class TaskItem extends React.Component{
             timeElapsed: 0,
             totalTime: "0:00",
             startTime: null,
+            interval: null,
         };
         this.StartTimerClick = this.StartTimerClick.bind(this);
+        this.StopTimerClick = this.StopTimerClick.bind(this);
         this.LogTimeDifference = this.LogTimeDifference.bind(this);
     }
     render(){
         return(
-            <div>
-                {this.state.itemName}
-                <button
+            <div >
+                <label className="taskAdderSpacing">{this.state.itemName}</label>
+                <button className="taskAdderSpacing"
                     onClick={this.StartTimerClick}>
-                    timer
+                    Start Timer
                 </button>
-                <label>{this.state.totalTime}</label>
+                <button className="taskAdderSpacing" onClick={this.StopTimerClick}>
+                    Stop Timer
+                </button>
+                <label className="taskAdderSpacing">{this.state.totalTime}</label>
             </div>
         );
     }
@@ -28,14 +33,22 @@ class TaskItem extends React.Component{
 
     }
     StartTimerClick(){
-        this.setState({startTime: new Date()})
-        console.log("start time:" + this.state.startTime);
-        setInterval(this.LogTimeDifference, 1000);
+        if (this.state.startTime == null)
+            this.setState({startTime: new Date()})
+        else
+            this.setState({startTime: (new Date() - this.state.startTime)});
+        //console.log("start time:" + this.state.startTime);
+        this.setState({interval: setInterval(this.LogTimeDifference, 1000)});
+    }
+    StopTimerClick(){
+        let now = new Date();
+        this.setState({timeElapsed: (now - this.state.startTime)});
+        clearInterval(this.state.interval);
     }
     LogTimeDifference(){
         let now = new Date() - this.state.startTime;
         now = Math.floor(now /1000);
-        console.log("Time Passed:" + now);
+        //console.log("Time Passed:" + now);
         let hours = null;
         let minutes = null;
         let seconds = null;
