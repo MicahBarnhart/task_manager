@@ -45,7 +45,7 @@ class TaskItem extends React.Component{
             //console.log("Total time when started: " + this.state.startTime);
             //console.log("start time:" + this.state.startTime);
             this.setState({interval: setInterval(this.LogTimeDifference, 1000), timerToggle: "Running"});
-            //document.getElementById("timerButton").innerHTML = "Stop Timer";
+            document.getElementById("timerButton").innerHTML = "Stop Timer";
         }
         else{
             let now = new Date();
