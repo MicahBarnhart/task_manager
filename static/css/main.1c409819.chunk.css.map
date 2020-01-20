@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,WACI,eACJ,CACA,kBACI,UACJ,CAEA,QACI,iBAAkB,CAClB,QACJ","file":"main.1c409819.chunk.css","sourcesContent":[".taskAdder{\r\n    margin-top: 10px;\r\n}\r\n.taskAdderSpacing{\r\n    margin: 5px;\r\n}\r\n\r\n.footer{\r\n    position: absolute;\r\n    bottom: 0;\r\n}"]}
